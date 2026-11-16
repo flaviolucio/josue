@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema Josué — cifras, tablaturas e acordes</title>
+<meta name="description" content="Transforme suas músicas em cifras, tablaturas e acordes de forma rápida e organizada.">
+<link rel="icon" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a1324; --bg2:#0d1a30; --panel:#111e36; --line:rgba(244,184,64,.22);
+  --gold:#f6b93b; --gold2:#ffd36b; --gold3:#e39a12; --text:#f3f1ea; --muted:#b9c0cf; --teal:#2fd3e0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1070px,100% - 32px);margin-inline:auto}
+.gold{color:var(--gold)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 30px;border-radius:12px;font-weight:700;font-size:17px;transition:transform .15s,box-shadow .15s,background .15s;white-space:nowrap}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-gold{background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#1a1206;box-shadow:0 8px 24px rgba(246,185,59,.28),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(246,185,59,.4),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.75);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-sm{height:44px;padding:0 20px;font-size:15px;border-radius:10px}
+
+/* topo */
+header{position:sticky;top:0;z-index:50;background:rgba(8,15,30,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:60px;height:60px;border-radius:12px}
+.brand b{display:block;font-size:20px;font-weight:700;line-height:1.1}
+.brand span{display:block;font-family:Cinzel,serif;font-weight:800;font-size:28px;line-height:1;color:var(--gold);letter-spacing:.5px}
+.menu{display:flex;gap:44px;font-weight:500;font-size:16px;color:#e7e9ef}
+.menu a:hover{color:var(--gold)}
+
+/* hero */
+.hero{position:relative;background:radial-gradient(70% 90% at 75% 40%,#13284a 0%,#0b1630 55%,#09122a 100%);overflow:hidden}
+.hero-art{position:absolute;left:0;top:0;bottom:0;width:min(58%,820px);
+  -webkit-mask-image:linear-gradient(90deg,#000 50%,rgba(0,0,0,.6) 72%,transparent 97%),linear-gradient(#000 85%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,#000 50%,rgba(0,0,0,.6) 72%,transparent 97%),linear-gradient(#000 85%,transparent);mask-composite:intersect}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:left top}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:514px}
+.hero-copy{grid-column:2;text-align:center;padding:24px 0 30px;margin-right:-30px}
+.kicker{font-size:13px;letter-spacing:.55em;color:#e8dfc8;font-weight:600;line-height:1.4}
+.title{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 0 14px}
+.title::before,.title::after{content:"";height:2px;width:86px;background:linear-gradient(90deg,transparent,var(--gold) 80%);border-radius:2px}
+.title::after{transform:scaleX(-1)}
+.title h1{font-family:Cinzel,serif;font-weight:800;font-size:clamp(44px,5.4vw,56px);line-height:1;letter-spacing:.02em;background:linear-gradient(180deg,#ffe28a,var(--gold) 50%,#c97f0c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 14px rgba(246,185,59,.3))}
+.hero h2{font-size:clamp(28px,3.3vw,38px);font-weight:800;line-height:1.18;letter-spacing:-.01em}
+.lead{margin:16px auto 26px;max-width:420px;font-size:18px;color:#d6dae3}
+.ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.ctas .btn{min-width:212px}
+.verse{display:flex;align-items:center;gap:12px;margin:32px auto 0;max-width:500px;text-align:left;font-size:16.5px;color:#dfe2ea;line-height:1.5}
+.verse svg{width:34px;height:62px;flex:none;color:var(--gold);filter:drop-shadow(0 0 6px rgba(246,185,59,.35))}
+.verse b{font-weight:600;color:#fff}
+.verse em{font-style:normal;color:var(--gold2);white-space:nowrap}
+.app .pill,.app .export,.app .back,.app h4,.tabs span{white-space:nowrap}
+.app .pills{flex-wrap:nowrap}
+
+/* faixa de recursos */
+.feats{border-block:1px solid var(--line);background:linear-gradient(180deg,rgba(17,30,54,.6),rgba(10,19,36,.9))}
+.feats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.feat{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;padding:28px 12px;white-space:nowrap}
+.feat+.feat::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:rgba(255,255,255,.12)}
+.feat svg{width:48px;height:48px;color:var(--gold);flex:none}
+.feat b{display:block;font-size:18px}
+.feat span{color:var(--muted);font-size:15px}
+
+/* como funciona */
+.how{position:relative;background:linear-gradient(var(--bg) 0%,rgba(10,19,36,.92) 45%,rgba(10,19,36,0) 100%),url(./img/fundo-inicio.webp) center bottom/cover,var(--bg);padding:50px 0 60px;overflow-x:clip}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.how h3{font-size:clamp(26px,2.9vw,33px)!important;white-space:nowrap}
+.how-grid > div:last-child{padding-bottom:30px}
+.how h3{font-size:clamp(28px,3.2vw,36px);font-weight:800;line-height:1.15;margin-bottom:30px}
+.checks{list-style:none;display:grid;gap:20px}
+.checks li{display:flex;gap:14px;align-items:center;font-size:18px}
+.checks li::before{content:"";flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1206' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:0 0 16px rgba(246,185,59,.35)}
+
+/* laptop */
+.laptop{margin:0 7%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.screen{background:#05080f;border:11px solid #15171c;border-bottom-width:16px;border-radius:20px 20px 0 0;padding:0;overflow:hidden;box-shadow:0 0 0 1.5px #3a3e47,0 0 60px rgba(246,185,59,.12)}
+.base{height:16px;margin:0 -7%;background:linear-gradient(180deg,#e2e4e8,#9a9ea6 60%,#6c7078);border-radius:2px 2px 16px 16px;position:relative}
+.vid{position:relative;aspect-ratio:16/9;background:#000}
+.vid video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+.vplay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:0;cursor:pointer;color:#fff;font:600 15px Inter,sans-serif;
+  background:radial-gradient(circle at center,rgba(5,10,22,.25),rgba(5,10,22,.65));transition:opacity .25s}
+.vplay svg{width:34px;height:34px;padding:22px;box-sizing:content-box;border-radius:50%;color:#1a1206;background:linear-gradient(180deg,var(--gold2),var(--gold3));
+  box-shadow:0 0 0 10px rgba(246,185,59,.18),0 10px 30px rgba(0,0,0,.5);transition:transform .2s}
+.vplay:hover svg{transform:scale(1.08)}
+.vplay span{background:rgba(5,10,22,.7);padding:6px 14px;border-radius:999px}
+.vid.playing .vplay{opacity:0;pointer-events:none}
+.base::before{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);background:#61656d;border-radius:0 0 8px 8px}
+.app{zoom:.9;background:#0c1424;font-size:10px;color:#dfe3ea;padding:12px 14px 10px}
+.app-top{display:flex;align-items:center;gap:10px}
+.app-top img{width:34px;height:34px;border-radius:6px}
+.app-top .back{color:#aeb6c4}
+.app-top h4{font-size:11px;font-weight:700}
+.pills{display:flex;gap:6px;margin-top:4px}
+.pill{background:#1a2438;border-radius:4px;padding:2px 6px;font-size:8.5px}
+.pill b{color:var(--gold)}
+.export{margin-left:auto;background:var(--gold);color:#1a1206;font-weight:700;border-radius:5px;padding:5px 10px;font-size:9px}
+.tabs{display:flex;gap:4px;margin:12px 0 10px}
+.tabs span{padding:4px 10px;border-radius:5px;background:#162036;font-size:8.5px}
+.tabs .on{background:var(--gold);color:#1a1206;font-weight:700}
+.tabs .off{background:none;color:#59647a}
+.app-body{display:grid;grid-template-columns:1.55fr 1fr;gap:8px}
+.sheet{border:1px solid #233150;border-radius:7px;padding:10px 16px 12px 52px;font-family:"JetBrains Mono",monospace;font-size:9.5px;line-height:1.35;height:160px;overflow:hidden;background:#0a1120}
+.sheet .c{color:var(--gold);font-weight:700}
+.sheet p{margin-bottom:6px;white-space:pre}
+.chords{border:1px solid #233150;border-radius:7px;padding:8px;background:#0a1120}
+.chords h5{font-size:9px;margin-bottom:6px}
+.inst{display:flex;gap:4px;margin-bottom:8px}
+.inst span{flex:1;text-align:center;padding:3px 0;border-radius:4px;font-size:8px;background:#162036}
+.inst .on{background:var(--gold);color:#1a1206;font-weight:700}
+.diagrams{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.diag{background:#121c31;border-radius:6px;padding:6px;text-align:center;font-weight:700;font-size:9px}
+.diag svg{width:100%;height:auto;margin-top:2px}
+.player{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:8px;color:#aeb6c4}
+.wave{flex:1;height:22px;background:repeating-linear-gradient(90deg,var(--gold3) 0 2px,transparent 2px 4px);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 L5 6 L10 13 L15 4 L20 15 L25 7 L30 12 L35 3 L40 16 L45 8 L50 11 L55 2 L60 17 L65 6 L70 13 L75 5 L80 15 L85 4 L90 14 L95 6 L100 12 L105 3 L110 16 L115 7 L120 13 L125 4 L130 15 L135 6 L140 12 L145 3 L150 17 L155 7 L160 13 L165 5 L170 14 L175 6 L180 12 L185 7 L190 11 L195 8 L200 10 L200 20 L0 20Z' fill='%23000'/%3E%3C/svg%3E") center/100% 100%;opacity:.9;border-radius:2px}
+.controls{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:8px;color:#aeb6c4}
+.play{width:24px;height:24px;border-radius:50%;background:var(--gold);display:grid;place-items:center}
+.play::after{content:"";border-left:8px solid #1a1206;border-block:5px solid transparent;margin-left:2px}
+
+/* CTA final */
+.final{position:relative;padding:44px 0 110px;border-top:1px solid var(--line);background:linear-gradient(180deg,var(--bg2),#0b1428 60%),var(--bg);overflow:hidden}
+.final::after{content:"";position:absolute;inset:auto 0 0 0;height:180px;background:url(./img/fundo-inicio.webp) center bottom/cover;opacity:.9;-webkit-mask-image:linear-gradient(transparent,#000 60%);mask-image:linear-gradient(transparent,#000 60%)}
+.final .wrap{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-around;gap:30px;flex-wrap:wrap}
+.final h3{font-size:clamp(28px,3vw,34px);font-weight:800}
+.final p{color:#cfd4de;font-size:18px;max-width:380px;margin-top:6px}
+.final .btn{height:62px;padding:0 38px;font-size:19px}
+.final .wrap.dl{display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:center;justify-content:normal}
+.dl-head .req{margin-top:16px;font-size:14px;color:var(--gold2);letter-spacing:.02em}
+.dl-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dl-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:16px;background:rgba(17,30,54,.82);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(6px)}
+.dl-card.best{border-color:rgba(246,185,59,.6);box-shadow:0 0 40px rgba(246,185,59,.12)}
+.dl-card h4{font-size:20px;font-weight:800}
+.dl-card p{font-size:15px;color:#cfd4de;margin:0;max-width:none}
+.dl-card .size{font-size:26px;font-weight:800;color:var(--gold);margin-top:-6px}
+.dl-card .btn{height:50px;font-size:16px;padding:0 20px;margin-top:auto;width:100%}
+.dl-card svg{width:20px;height:20px}
+.tag{position:absolute;top:-12px;right:18px;background:var(--gold);color:#1a1206;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.parts{list-style:none;display:grid;gap:6px;margin-top:auto}
+.parts a{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.05);font-size:13.5px;font-weight:600;color:#e7e9ef;transition:background .15s}
+.parts a:hover{background:rgba(246,185,59,.15);color:var(--gold2)}
+.dl-head .dl-tip{margin-top:14px;font-size:14px;color:var(--muted);line-height:1.55;max-width:400px}
+.dl-card .note{font-size:13px;color:var(--muted);line-height:1.5}
+.dl-card .note a{color:var(--gold2);text-decoration:underline}
+.parts small{color:var(--muted);font-weight:500;white-space:nowrap}
+.btn svg use{color:currentColor}
+@media (max-width:980px){.final .wrap.dl{grid-template-columns:1fr}}
+@media (max-width:600px){.dl-cards{grid-template-columns:1fr}.parts a{font-size:12.5px}}
+.contact{padding:70px 0;background:var(--bg2);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:start}
+.contact h3{font-size:clamp(28px,3vw,34px);font-weight:800}
+.contact-grid > div p{color:#cfd4de;font-size:18px;margin-top:10px;max-width:380px}
+.cform{display:grid;gap:16px;padding:28px;border-radius:16px;background:rgba(17,30,54,.82);border:1px solid rgba(255,255,255,.1)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform label{display:grid;gap:6px;font-size:14px;font-weight:600;color:#e7e9ef}
+.cform input,.cform select,.cform textarea{font:inherit;font-weight:400;font-size:16px;color:var(--text);background:#0a1324;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:12px 14px;width:100%}
+.cform textarea{resize:vertical;min-height:120px}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(246,185,59,.2)}
+.cform .btn{justify-self:start;border:0;cursor:pointer}
+.cform .btn:disabled{opacity:.6;cursor:wait}
+.honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cmsg{min-height:1.4em;font-size:15px}
+.cmsg.ok{color:#7ee2a0}.cmsg.err{color:#ff9a8a}
+@media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:600px){.cform .row2{grid-template-columns:1fr}.cform .btn{width:100%}}
+footer{background:#070d19;color:#7f889a;font-size:14px;text-align:center;padding:22px 16px}
+
+/* responsivo */
+@media (max-width:980px){
+  .menu{display:none}
+  .hero-grid,.how-grid{grid-template-columns:1fr}
+  .hero-art{position:relative;width:100%;height:auto;aspect-ratio:652/512;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+  .hero-copy{grid-column:1;margin:-60px 0 0;padding:0 0 40px}
+  .laptop{margin:0 4%}
+  .feats .wrap{grid-template-columns:1fr 1fr}
+  .feat:nth-child(3)::before{display:none}
+  .feat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.08)}
+  .how h3{white-space:normal}
+}
+@media (max-width:560px){
+  .nav{height:64px}
+  .brand img{width:44px;height:44px}
+  .brand b{font-size:15px}.brand span{font-size:21px}
+  .nav .btn-sm{padding:0 12px;font-size:13px;height:38px}
+  .nav .btn-sm svg{display:none}
+  .title::before,.title::after{width:36px}
+  .lead{font-size:17px}
+  .ctas .btn{width:100%}
+  .verse{font-size:15px}
+  .feats .wrap{grid-template-columns:1fr}
+  .feat{padding:18px 8px}
+  .feat{justify-content:flex-start}
+  .feat+.feat::before{display:none}
+  .feat+.feat{border-top:1px solid rgba(255,255,255,.08)}
+  .checks li{font-size:16px}
+  .app{zoom:.62}
+  .final .wrap{flex-direction:column;align-items:flex-start}
+  .final .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <!-- ramo de louro: haste curva com folhas alternadas -->
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11m-5-5l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="louro" viewBox="0 0 28 52">
+    <path d="M20 50C9 42 5 28 9 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <g fill="currentColor">
+      <path d="M9 6c-4 1-6 4-6 7 3-1 5-3 6-7z"/><path d="M9.5 6c3 1 5 4 4 7-2.5-1.5-4-4-4-7z"/>
+      <path d="M7.5 15c-4 1-6 4-6 7.5 3-1 5-3.5 6-7.5z"/><path d="M8 15.5c3.5 1 5.5 4 5 7.5-3-1.5-4.5-4-5-7.5z"/>
+      <path d="M7.5 25c-4 1.5-5.5 5-5 8.5 3-1.5 4.5-4.5 5-8.5z"/><path d="M8.5 25.5c3.5 1.5 5 5 4 8.5-2.5-2-4-5-4-8.5z"/>
+      <path d="M10 35c-4 2-5 5.5-4 9 3-2 4-5 4-9z"/><path d="M11 35.5c3.5 2 4.5 5.5 3 8.5-2.5-2-3.5-5-3-8.5z"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="brand"><img src="./img/josue-96.png" alt=""><div><b>Sistema</b><span>Josué</span></div></a>
+    <nav class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#baixar">Baixar</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href="#baixar" class="btn btn-gold btn-sm">Baixar o Josué
+      <svg viewBox="0 0 24 24"><use href="#i-down"/></svg>
+    </a>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-art"><img src="./img/hero-josue.webp" alt="Josué diante das muralhas de Jericó com os sacerdotes tocando os shofares" width="652" height="512"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">SISTEMA<br>JOSUÉ</div>
+      <div class="title"><h1>JOSUÉ</h1></div>
+      <h2>Estude, toque e evolua<br>na música <span class="gold">com praticidade</span></h2>
+      <p class="lead">Transforme suas músicas em cifras, tablaturas e acordes de forma rápida e organizada.</p>
+      <div class="ctas">
+        <a href="#baixar" class="btn btn-gold"><svg viewBox="0 0 24 24"><use href="#i-down"/></svg>Baixar para Windows</a>
+        <a href="#como-funciona" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 4.5v15l13-7.5z"/></svg>Ver Demonstração</a>
+      </div>
+      <p class="verse">
+        <svg viewBox="0 0 28 52"><use href="#louro"/></svg>
+        <span>“Seja forte e corajoso, porque o Senhor, seu Deus, estará com você por <b>onde você andar</b>.” <em>— Josué 1:9</em></span>
+        <svg viewBox="0 0 28 52" style="transform:scaleX(-1)"><use href="#louro"/></svg>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="feats" id="recursos">
+  <div class="wrap">
+    <div class="feat"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M18 8l22-5v29a7 7 0 1 1-4-6.3V13l-14 3.2V37a7 7 0 1 1-4-6.3z"/></svg><div><b>Cifras</b><span>Com acordes precisos</span></div></div>
+    <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M16 10h28M16 20h28M16 30h28M16 40h28"/><g fill="currentColor" stroke="none"><circle cx="6" cy="10" r="3"/><circle cx="6" cy="20" r="3"/><circle cx="6" cy="30" r="3"/><circle cx="6" cy="40" r="3"/></g></svg><div><b>Tablatura</b><span>Estude nota por nota</span></div></div>
+    <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5"><circle cx="24" cy="24" r="20"/><path d="M19 15v18l14-9z" fill="currentColor" stroke-linejoin="round"/></svg><div><b>Reprodução</b><span>Ouça e acompanhe</span></div></div>
+    <div class="feat"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"><path d="M4 12a3 3 0 0 1 3-3h11l5 5h18a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/></svg><div><b>Biblioteca</b><span>Organize suas músicas</span></div></div>
+  </div>
+</section>
+
+<section class="how" id="como-funciona">
+  <div class="wrap how-grid">
+    <div class="laptop">
+      <div class="screen">
+        <div class="vid">
+          <video id="demo" src="./video/josue-divulgacao.mp4" poster="./video/capa.webp" preload="metadata" playsinline
+            aria-label="Vídeo de demonstração do Sistema Josué"></video>
+          <button class="vplay" type="button" aria-label="Assistir à demonstração">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Assistir à demonstração · 2 min</span>
+          </button>
+        </div>
+      </div>
+      <div class="base"></div>
+    </div>
+    <div>
+      <h3>Tudo o que você precisa<br>para estudar suas músicas</h3>
+      <ul class="checks">
+        <li>Envie o áudio ou use um link do YouTube</li>
+        <li>Gere cifras, tablaturas e acordes automaticamente</li>
+        <li>Acompanhe a reprodução da música</li>
+        <li>Salve e organize suas músicas na biblioteca</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="baixar">
+  <div class="wrap dl">
+    <div class="dl-head">
+      <h3>Comece agora mesmo!</h3>
+      <p>Baixe o Sistema Josué e tenha uma nova experiência no seu estudo musical. Tudo roda no seu computador.</p>
+      <p class="req">Windows 10 ou 11 · 64 bits · versão 1.0.0</p>
+      <p class="dl-tip">Os arquivos ficam no Google Drive. Ao baixar, o Google avisa que não consegue verificar vírus em programas (.exe) e arquivos grandes: é normal, clique em <b>“Fazer o download assim mesmo”</b>.</p>
+    </div>
+    <div class="dl-cards">
+      <article class="dl-card best">
+        <span class="tag">Recomendado</span>
+        <h4>Instalador leve</h4>
+        <p class="size">44 MB</p>
+        <p>Download rápido. Durante a instalação, baixa as bibliotecas e os modelos de IA (cerca de 6 GB). Precisa de internet e leva de 20 a 60 minutos.</p>
+        <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&amp;id=1_bJ4mDwM2_o35Zd9s0qYDlhF8EE2Dd2C" rel="noopener"><svg viewBox="0 0 24 24"><use href="#i-down"/></svg>Baixar versão leve</a>
+      </article>
+      <article class="dl-card">
+        <h4>Instalador completo</h4>
+        <p class="size">5,7 GB · 4 arquivos</p>
+        <p>Já vem com tudo, para instalar sem internet. Baixe os 4 arquivos para a <b>mesma pasta</b> e abra o <b>.exe</b>.</p>
+        <ul class="parts">
+          <li><a href="https://drive.google.com/uc?export=download&amp;id=18bbyLZd_1toTzOuROfQmeiUTK3r9PpTD" rel="noopener">Instalador (.exe) <small>5 MB</small></a></li>
+          <li><a href="https://drive.google.com/uc?export=download&amp;id=19fuCC5Xp5GAZaXVcD2BkLd9jBmL1d2jI" rel="noopener">Parte 1 (.bin) <small>1,9 GB</small></a></li>
+          <li><a href="https://drive.google.com/uc?export=download&amp;id=1lTJwEb5QQsRSEM_-xmhY7BYBeDOZovKh" rel="noopener">Parte 2 (.bin) <small>1,9 GB</small></a></li>
+          <li><a href="https://drive.google.com/uc?export=download&amp;id=1yUT36_UwXN-_FA4l4AzfEI7JQM6Pt1Bg" rel="noopener">Parte 3 (.bin) <small>1,9 GB</small></a></li>
+        </ul>
+        <p class="note">Ou <a href="https://drive.google.com/drive/folders/1Pxr_Q0IR-Gfrjw0Jb75zV2-1tDl1SG7d" target="_blank" rel="noopener">abra a pasta no Google Drive</a>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
+    <div>
+      <h3>Fale com a gente</h3>
+      <p>Dúvidas, sugestões, problemas na instalação ou ideias para o Josué? Mande uma mensagem e respondemos no seu e-mail.</p>
+    </div>
+    <form id="form-contato" class="cform" novalidate>
+      <div class="row2">
+        <label>Nome<input name="nome" required maxlength="80" autocomplete="name"></label>
+        <label>E-mail<input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+      </div>
+      <label>Assunto
+        <select name="assunto">
+          <option>Dúvida</option><option>Problema na instalação</option><option>Sugestão</option><option>Outro</option>
+        </select>
+      </label>
+      <label>Mensagem<textarea name="mensagem" required rows="5" maxlength="3000"></textarea></label>
+      <!-- armadilha para robôs: pessoas não veem este campo -->
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honey" aria-hidden="true">
+      <button class="btn btn-gold" type="submit">Enviar mensagem</button>
+      <p class="cmsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer>© <span id="ano">2026</span> Sistema Josué</footer>
+<script>document.getElementById('ano').textContent = new Date().getFullYear()</script>
+<script>
+  // Formulário de contato -> e-mail, pelo FormSubmit (formsubmit.co).
+  // No primeiro envio o FormSubmit manda um e-mail de ativação para este endereço; clique no link para ativar.
+  const CONTATO_EMAIL = 'flavioluciocurado@gmail.com'  // e-mail que recebe as mensagens
+  const form = document.getElementById('form-contato'), msg = form.querySelector('.cmsg'), btn = form.querySelector('button')
+  const say = (t, cls) => { msg.textContent = t; msg.className = 'cmsg ' + (cls || '') }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form.checkValidity()) { say('Preencha nome, um e-mail válido e a mensagem.', 'err'); form.reportValidity(); return }
+    if (!CONTATO_EMAIL) { say('O envio ainda não foi configurado.', 'err'); return }
+    const d = Object.fromEntries(new FormData(form))
+    btn.disabled = true; say('Enviando…')
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(CONTATO_EMAIL), {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...d, _subject: `Josué – ${d.assunto}: ${d.nome}`, _replyto: d.email, _template: 'table', _captcha: 'false' }),
+      })
+      const j = await r.json().catch(() => ({}))
+      if (!r.ok || String(j.success) === 'false') throw new Error(j.message || r.status)
+      form.reset(); say('Mensagem enviada! Vamos responder no seu e-mail.', 'ok')
+    } catch (err) {
+      say('Não foi possível enviar agora. Tente de novo em instantes.', 'err')
+    } finally { btn.disabled = false }
+  })
+</script>
+<script>
+  // botão de play sobre a capa; some enquanto o vídeo toca
+  const v = document.getElementById("demo"), box = v.parentElement
+  box.querySelector(".vplay").addEventListener("click", () => v.play())
+  v.addEventListener("play", () => { box.classList.add("playing"); v.controls = true })
+  v.addEventListener("ended", () => box.classList.remove("playing"))
+  document.querySelector(".btn-ghost[href=\"#como-funciona\"]").addEventListener("click", () => setTimeout(() => v.play(), 600))
+</script>
+</body>
+</html>

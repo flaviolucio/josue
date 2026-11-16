@@ -1,0 +1,43 @@
+# --- dependências e builds ---
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+
+# --- pesados: modelos de IA, músicas processadas, instaladores, vídeos ---
+app/models/
+app/server/models/
+app/server/data/
+app/server/storage/
+instalador/
+site/downloads/
+narracao/cenas/
+narracao/trechos/
+*.mp4
+*.wav
+*.mp3
+*.ogg
+*.zip
+*.bin
+*.exe
+*.msi
+
+# --- dados locais e segredos ---
+*.db
+.env
+.env.*
+*.log
+
+# --- sistema ---
+Thumbs.db
+desktop.ini
+
+# cache do TypeScript
+*.tsbuildinfo
+
+# configuração local do Claude Code
+.claude/
+
+# especificação original do projeto (local)
+craft.json

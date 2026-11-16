@@ -1,0 +1,20 @@
+fastapi==0.115.*
+uvicorn[standard]==0.32.*
+python-multipart==0.0.*
+sqlalchemy==2.0.*
+psycopg[binary]==3.2.*
+redis==5.*
+rq==2.*
+numpy<2.0
+scipy
+librosa==0.10.*
+soundfile
+torch
+torchaudio
+demucs==4.0.*
+faster-whisper==1.1.*
+cython
+# madmom (acordes, batidas e compasso). A versão do GitHub funciona com Python 3.10+.
+madmom @ git+https://github.com/CPJKU/madmom.git
+reportlab==4.*
+yt-dlp

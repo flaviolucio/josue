@@ -1,0 +1,22 @@
+0:01|Este é o Josué: o sistema que transforma qualquer música em cifra, com acordes, letra e tablatura.
+0:10|Para começar, é só enviar um arquivo de áudio do seu computador.
+0:16|Ou, se preferir, colar o link de um vídeo do YouTube. O Josué baixa o áudio e faz todo o resto.
+0:25|Aqui está o resultado: a cifra completa, com o tom, o andamento, o compasso e as seções da música, como introdução e versos.
+0:36|Na aba Tab, você vê a tablatura gerada a partir da guitarra separada pela inteligência artificial.
+0:44|São duas pautas: a guitarra solo e a base, com as notas e o ritmo de cada trecho.
+0:52|Ao tocar a música, o cursor acompanha a tablatura nota por nota, para você estudar no seu tempo.
+1:12|De volta à cifra, ao lado ficam os desenhos de todos os acordes da música.
+1:19|O Josué também tem um afinador. Ele usa o microfone e mostra se a corda está grave ou aguda.
+1:29|Durante a reprodução, o acorde da vez fica destacado na cifra e no diagrama.
+1:36|Neste menu ficam as ferramentas de estudo: revisar acordes, metrônomo, treino progressivo, escalas para solar e treino de troca de acordes.
+1:52|Você também pode mudar o tom, colocar capotraste e ajustar a velocidade sem alterar a afinação.
+2:04|O painel Acorde atual mostra o acorde que está tocando agora e os próximos, para você se preparar antes da troca.
+2:22|Quando quiser levar a cifra para o ensaio, é só exportar: em PDF, em texto, em ChordPro, ou imprimir direto.
+2:37|E os acordes podem ser vistos no violão, no ukulele ou no teclado.
+2:47|O painel de acordes também funciona junto com a tablatura.
+3:23|O botão Power procura power chords na guitarra e troca os acordes onde eles aparecem.
+3:41|Se quiser, você volta ao acorde normal com um clique.
+3:50|O modo simples mostra só a letra, para quem vai cantar.
+4:12|Se a letra tiver algum erro, você cola a letra certa e o Josué sincroniza cada palavra com o tempo da música.
+4:29|Todas as músicas ficam guardadas na sua biblioteca, com busca, favoritos e backup.
+4:39|Josué. Estude, toque e evolua na música, com praticidade.

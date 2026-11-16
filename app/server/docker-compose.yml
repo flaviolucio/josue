@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: cifra
+      POSTGRES_PASSWORD: cifra
+      POSTGRES_DB: cifra
+    volumes: [pgdata:/var/lib/postgresql/data]
+
+  redis:
+    image: redis:7
+
+  api:
+    build: .
+    environment: &env
+      DATABASE_URL: postgresql+psycopg://cifra:cifra@db:5432/cifra
+      REDIS_URL: redis://redis:6379/0
+      STORAGE_DIR: /data
+      CORS_ORIGINS: "*"
+    volumes: [audio:/data]
+    ports: ["8000:8000"]
+    depends_on: [db, redis]
+
+  worker:
+    build: .
+    command: rq worker --url redis://redis:6379/0 cifra
+    environment: *env
+    volumes: [audio:/data, models:/root/.cache]
+    depends_on: [db, redis]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  pgdata:
+  audio:
+  models:
